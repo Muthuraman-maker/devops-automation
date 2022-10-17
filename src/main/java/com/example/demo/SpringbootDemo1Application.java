@@ -2,6 +2,8 @@ package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -13,7 +15,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 @SpringBootApplication
 //@EnableWebSecurity(debug = true)
 @OpenAPIDefinition(info = @Info(title = "Sample SpringBoot API's", version = "2.0", description = "List of Sample API's for understandin"))
-public class SpringbootDemo1Application {
+public class SpringbootDemo1Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootDemo1Application.class, args);
@@ -28,5 +30,8 @@ public class SpringbootDemo1Application {
 		//OwnerService user = (OwnerService)ctx.getBean("myBean");
 		//System.out.println("Printing user:"+user.getList());
 	}
-
+@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+	    return application.sources(SpringbootDemo1Application.class);
+	}
 }
